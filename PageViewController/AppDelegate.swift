@@ -14,9 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    private(set) lazy var orderedViewControllers: [UIViewController] = {
+        return [self.newColoredViewController(color: "Green"),
+                self.newColoredViewController(color: "Red"),
+                self.newColoredViewController(color: "Blue")]
+    }()
+    
+    private func newColoredViewController(color: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil) .
+            instantiateViewController(withIdentifier: "\(color)ViewController")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
